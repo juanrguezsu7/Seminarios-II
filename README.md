@@ -35,9 +35,39 @@ Esta vez, para que la esfera se quede fuera de la vista, modificamos el atributo
 ### 7. Especifica las rotaciones que se han indicado en los ejercicios previos con la utilidad quaternion.
 ### 8. ¿Como puedes averiguar la matriz de proyección en perspectiva que se ha usado para proyectar la escena al último frame renderizado?.
 ### 9. ¿Como puedes averiguar la matriz de proyección en perspectiva ortográfica que se ha usado para proyectar la escena al último frame renderizado?.
+La matriz de proyección utilizada por la cámara puede accederse mediante la propiedad Camera.projectionMatrix. Si la cámara está configurada en modo ortográfico (es decir, sin perspectiva), esta propiedad contiene la matriz de proyección ortográfica. Para verificar el tipo de proyección, se puede consultar la propiedad Camera.orthographic, que devuelve true si la cámara está en modo ortográfico y false si está en modo perspectiva.
 ### 10. ¿Cómo puedes obtener la matriz de transformación entre el sistema de coordenadas local y el mundial?.
+El componente Transform permite acceder a la matriz de transformación entre el sistema de coordenadas local y el sistema mundial. Esto se puede lograr mediante la propiedad Transform.localToWorldMatrix. Esta matriz permite transformar posiciones y vectores de las coordenadas locales del objeto a las coordenadas del mundo.
 ### 11. Cómo puedes obtener la matriz para cambiar al sistema de referencia de vista
+Para cambiar al sistema de referencia de la vista se utiliza la matriz de vista de la cámara, que convierte las coordenadas del mundo en coordenadas de vista. En Unity, esta matriz es accesible a través de Camera.worldToCameraMatrix.
 ### 12. Especifica la matriz de la proyección usado en un instante de la ejecución del ejercicio 1 de la práctica 1.
+Gracias al siguiente código empleado, pudimos obtener la matriz de proyección usado en un instante de la ejecución.
+'''csharp
+using UnityEngine;
+
+
+public class seminario : MonoBehaviour
+{
+    void Start()
+    {
+        // Obtener la matriz de proyección de la cámara
+        Matrix4x4 projectionMatrix = Camera.main.projectionMatrix;
+       
+        // Imprimir la matriz en la consola
+        Debug.Log("Matriz de Proyección en ejecución:");
+        for (int row = 0; row < 4; row++)
+        {
+            string rowValues = "";
+            for (int col = 0; col < 4; col++)
+            {
+                rowValues += projectionMatrix[row, col].ToString("F4") + "\t";
+            }
+            Debug.Log(rowValues);
+        }
+    }
+}
+
+'''
 ### 13. Especifica la matriz de modelo y vista de la escena del ejercicio 1 de la práctica 1.
 ### 14. Aplica una rotación en el start de uno de los objetos de la escena y muestra la matriz de cambio al sistema de referencias mundial.
 ### 15. ¿Como puedes calcular las coordenadas del sistema de referencia de un objeto con las siguientes propiedades del Transform:?: Position (3, 1, 1), Rotation (45, 0, 45)
