@@ -42,7 +42,7 @@ El componente Transform permite acceder a la matriz de transformación entre el 
 Para cambiar al sistema de referencia de la vista se utiliza la matriz de vista de la cámara, que convierte las coordenadas del mundo en coordenadas de vista. En Unity, esta matriz es accesible a través de Camera.worldToCameraMatrix.
 ### 12. Especifica la matriz de la proyección usado en un instante de la ejecución del ejercicio 1 de la práctica 1.
 Gracias al siguiente código empleado, pudimos obtener la matriz de proyección usado en un instante de la ejecución.
-'''csharp
+```csharp
 using UnityEngine;
 
 
@@ -67,7 +67,7 @@ public class seminario : MonoBehaviour
     }
 }
 
-'''
+```
 ### 13. Especifica la matriz de modelo y vista de la escena del ejercicio 1 de la práctica 1.
 ### 14. Aplica una rotación en el start de uno de los objetos de la escena y muestra la matriz de cambio al sistema de referencias mundial.
 ### 15. ¿Como puedes calcular las coordenadas del sistema de referencia de un objeto con las siguientes propiedades del Transform:?: Position (3, 1, 1), Rotation (45, 0, 45)
