@@ -91,5 +91,82 @@ public class seminario : MonoBehaviour
 ![12](./img/Captura12.PNG)
 
 ### 13. Especifica la matriz de modelo y vista de la escena del ejercicio 1 de la práctica 1.
+Se calcula la matriz de modelo (para pasar del sistema local al mundial) y la matriz de vista (para pasar del sistema mundial al de vista) de la escena del ejercicio 1 de la práctica 1. Para ello, se ha creado un script que imprime ambas matrices en la consola.
+```csharp
+public class e1 : MonoBehaviour
+{
+  // Start is called before the first frame update
+  void Start()
+  {
+    Transform objetoTransform = GetComponent<Transform>();
+    Matrix4x4 modelMatrix = objetoTransform.localToWorldMatrix;
+
+    Camera camara = Camera.main;
+    Matrix4x4 viewMatrix = camara.worldToCameraMatrix;
+
+    Debug.Log("-----Model Matrix-----");
+    PrintMatrix(modelMatrix);
+    Debug.Log("-----View Matrix-----");
+    PrintMatrix(viewMatrix);
+  }
+
+  void PrintMatrix(Matrix4x4 matrix)
+  {
+    for (int i = 0; i < 4; i++)
+    {
+      Debug.Log(matrix.GetRow(i));
+    }
+  }
+}
+```
+![13](./img/13.png)
 ### 14. Aplica una rotación en el start de uno de los objetos de la escena y muestra la matriz de cambio al sistema de referencias mundial.
+```csharp
+public class e1 : MonoBehaviour
+{
+  // Start is called before the first frame update
+  void Start()
+  {
+    Transform objetoTransform = GetComponent<Transform>();
+    objetoTransform.Rotate(0, 90, 0);
+    Matrix4x4 modelMatrix = objetoTransform.localToWorldMatrix;
+
+    Camera camara = Camera.main;
+    Matrix4x4 viewMatrix = camara.worldToCameraMatrix;
+
+    Debug.Log("-----Model Matrix-----");
+    PrintMatrix(modelMatrix);
+    Debug.Log("-----View Matrix-----");
+    PrintMatrix(viewMatrix);
+  }
+
+  void PrintMatrix(Matrix4x4 matrix)
+  {
+    for (int i = 0; i < 4; i++)
+    {
+      Debug.Log(matrix.GetRow(i));
+    }
+  }
+}
+```
+Se observa que, al contrario de la anterior (donde no había rotación y por tanto los ejes estaban alineados con el sistema mundial), ahora las columnas que corresponden a cómo serían los ejes del objeto en el sistema mundial están cambiadas. Esto se debe a que la rotación ha cambiado el sistema de referencia del objeto (rotación de 90º en el eje Y).
+![14](./img/14.png)
 ### 15. ¿Como puedes calcular las coordenadas del sistema de referencia de un objeto con las siguientes propiedades del Transform:?: Position (3, 1, 1), Rotation (45, 0, 45)
+Teniendo ese sistema de referencia (cilindro), vamos a calcular cuáles serían las coordenadas para ese sistema de un punto arbitrario ((1, 2, 3) en el mundo). Para ello primero obtenemos la matriz de transformación al sistema mundial del cilindro y luego multiplicamos el punto por la matriz, obteniendo las coordenadas del punto en el sistema de referencia del cilindro.
+```csharp
+public class e2 : MonoBehaviour
+{
+  // Start is called before the first frame update
+  void Start()
+  {
+    Transform objetoTransform = GetComponent<Transform>();
+    Matrix4x4 worldToLocalMatrix = objetoTransform.worldToLocalMatrix;
+
+    Vector3 point = new Vector3(1, 2, 3);
+    
+    Debug.Log("Old position: " + point);
+    Debug.Log("New position: " + worldToLocalMatrix.MultiplyPoint(point));
+  }
+}
+```
+![15](./img/15.png)
