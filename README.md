@@ -68,8 +68,7 @@ public class seminario : MonoBehaviour
 }
 
 ```
-
-https://github.com/juanrguezsu7/Seminarios-II/blob/main/img/Captura12.PNG
+![12](./img/Captura12.PNG)
 
 ### 13. Especifica la matriz de modelo y vista de la escena del ejercicio 1 de la práctica 1.
 ### 14. Aplica una rotación en el start de uno de los objetos de la escena y muestra la matriz de cambio al sistema de referencias mundial.
