@@ -31,9 +31,29 @@ Esta vez, para que la esfera se quede fuera de la vista, modificamos el atributo
 
 ![4](./img/4.png)
 ### 5. Como puedes aumentar el ángulo de la cámara. Qué efecto tiene disminuir el ángulo de la cámara.
+Para modificar el ángulo de visión de la cámara en Unity, podemos ajustar el campo de visión (Field of View o FOV) en la propiedad `Camera.fieldOfView` si la cámara está en modo de proyección en perspectiva. Al aumentar el valor de `fieldOfView`, ampliamos el ángulo de visión, lo que genera un efecto de "alejamiento" en la imagen, permitiendo ver más contenido de la escena. Al disminuir el valor, el ángulo se reduce, generando un efecto de "zoom in", que hace que los objetos ocupen más espacio en la pantalla.
+
+```csharp
+Camera.main.fieldOfView = 60; // Ejemplo para establecer el ángulo en 60º
+```
 ### 6. Es correcta la siguiente afirmación: Para realizar la proyección al espacio 2D, en el inspector de la cámara, cambiaremos el valor de projection, asignándole el valor de orthographic
+Sí, la afirmación es correcta. En Unity, al cambiar la propiedad `Camera.orthographic` a `true`, pasamos de una proyección en perspectiva a una proyección ortográfica. Esto permite proyectar la escena en un espacio 2D, eliminando el efecto de profundidad. En el modo ortográfico, los objetos se proyectan sin distorsión debida a la perspectiva, lo que es ideal para juegos en 2D o aplicaciones que requieren una vista sin efectos de profundidad.
+```csharp
+Camera.main.orthographic = true; // Cambiar a proyección ortográfica
+```
 ### 7. Especifica las rotaciones que se han indicado en los ejercicios previos con la utilidad quaternion.
+Para realizar rotaciones en Unity utilizando cuaterniones se modifica la propiedad `rotation` en `transform`, usando la función `Euler` de la clase `Quaternion`. Esta función 
+devuelve la rotación especificada mediante los parámetros evitando problemas como el 'Gimbal lock'.
+Para rotar un objeto 30º alrededor del eje Y:
+```csharp
+transform.rotation = Quaternion.Euler(0, 30, 0);
+```
 ### 8. ¿Como puedes averiguar la matriz de proyección en perspectiva que se ha usado para proyectar la escena al último frame renderizado?.
+En Unity, se puede acceder a la matriz de proyección en perspectiva de una cámara a través de la propiedad `Camera.projectionMatrix`. Esta matriz define cómo se proyectan los objetos 3D en la pantalla en modo perspectiva.
+```csharp
+Matrix4x4 perspectiveMatrix = Camera.main.projectionMatrix;
+```
+Para la visualización de la matriz basta con imprimirla en consola.
 ### 9. ¿Como puedes averiguar la matriz de proyección en perspectiva ortográfica que se ha usado para proyectar la escena al último frame renderizado?.
 La matriz de proyección utilizada por la cámara puede accederse mediante la propiedad Camera.projectionMatrix. Si la cámara está configurada en modo ortográfico (es decir, sin perspectiva), esta propiedad contiene la matriz de proyección ortográfica. Para verificar el tipo de proyección, se puede consultar la propiedad Camera.orthographic, que devuelve true si la cámara está en modo ortográfico y false si está en modo perspectiva.
 ### 10. ¿Cómo puedes obtener la matriz de transformación entre el sistema de coordenadas local y el mundial?.
