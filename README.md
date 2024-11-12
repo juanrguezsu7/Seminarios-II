@@ -170,3 +170,33 @@ public class e2 : MonoBehaviour
 }
 ```
 ![15](./img/15.png)
+### 16. Investiga sobre los modelos de iluminación que aplica Unity y resume las relaciones existentes con el modelo explicado en clase.
+
+Unity utiliza modelos de iluminación similares a los estudiados en clase:
+
+1. **Iluminación Local**: Unity emplea el modelo de Lambert para la luz difusa y el modelo visto en clase para la luz especular. Estos modelos calculan la luz que afecta directamente a un objeto sin considerar reflejos de otros objetos, como se explicó en clase.
+
+2. **Iluminación Global**: Unity aplica una iluminación global que simula la luz reflejada entre superficies, parecido a la radiosidad. Esto permite que los objetos se iluminen tanto por fuentes directas como por la luz rebotada en el entorno.
+
+3. **Materiales**: Los materiales en Unity especifican cómo un objeto refleja la luz, permitiendo configuraciones de brillo y rugosidad.
+
+### 17. Indica las funciones de la API de Unity más importantes respecto a la iluminación
+
+1. **Componente `Light`**:
+   - `Light.type`: Define el tipo de luz (Directional, Point, Spot, Area), lo que determina cómo se emite y afecta la iluminación en la escena.
+   - `Light.intensity`: Controla la intensidad o brillo de la luz. Permite ajustar cómo de intensa es la luz emitida.
+   - `Light.range`: Para luces puntuales y focos (`spot lights`), define el alcance de la luz.
+   - `Light.color`: Establece el color de la luz.
+
+2. **Iluminación Global y Ambiente**:
+   - `RenderSettings.ambientMode`: Permite seleccionar el modo de iluminación ambiental (Skybox, Color, Gradient).
+   - `RenderSettings.ambientIntensity`: Controla la intensidad de la luz ambiental aplicada en la escena, afectando el tono y la luz difusa general.
+   - `RenderSettings.ambientLight`: Define el color de la luz ambiental cuando `ambientMode` está en Color.
+
+3. **Sombras**:
+   - `Light.shadows`: Activa o desactiva las sombras para una fuente de luz. También permite seleccionar el tipo de sombra (None, Hard, Soft).
+   - `Light.shadowStrength`: Ajusta la opacidad de las sombras.
+
+4. **Materiales y Shaders**:
+   - `Material.SetFloat`, `Material.SetColor`: Permiten modificar propiedades del material, como el brillo especular, el color de la emisión y la rugosidad.
+   - `Shader.globalIlluminationFlags`: Controla cómo un material interactúa con la iluminación global.
