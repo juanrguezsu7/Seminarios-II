@@ -37,10 +37,7 @@ Para modificar el ángulo de visión de la cámara en Unity, podemos ajustar el 
 Camera.main.fieldOfView = 60; // Ejemplo para establecer el ángulo en 60º
 ```
 ### 6. Es correcta la siguiente afirmación: Para realizar la proyección al espacio 2D, en el inspector de la cámara, cambiaremos el valor de projection, asignándole el valor de orthographic
-Sí, la afirmación es correcta. En Unity, al cambiar la propiedad `Camera.orthographic` a `true`, pasamos de una proyección en perspectiva a una proyección ortográfica. Esto permite proyectar la escena en un espacio 2D, eliminando el efecto de profundidad. En el modo ortográfico, los objetos se proyectan sin distorsión debida a la perspectiva, lo que es ideal para juegos en 2D o aplicaciones que requieren una vista sin efectos de profundidad.
-```csharp
-Camera.main.orthographic = true; // Cambiar a proyección ortográfica
-```
+La afirmación es falsa. Esto se debe a que la proyección al espacio 2D se puede realizar sin depender del tipo de proyección utilizada. No es estrictamente necesario cambiar la configuración de la cámara ya que la proyección 2D puede lograrse utilizando una cámara en modo `Perspective`.
 ### 7. Especifica las rotaciones que se han indicado en los ejercicios previos con la utilidad quaternion.
 Para realizar rotaciones en Unity utilizando cuaterniones se modifica la propiedad `rotation` en `transform`, usando la función `Euler` de la clase `Quaternion`. Esta función 
 devuelve la rotación especificada mediante los parámetros evitando problemas como el 'Gimbal lock'.
